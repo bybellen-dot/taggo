@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taggo Explorer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13b6ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101d22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden h-screen">
+<div class="flex h-full w-full">
+<!-- Sidebar Navigation Rail -->
+<aside class="w-20 lg:w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col items-center lg:items-start py-6 px-4 shrink-0 z-50">
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="bg-primary rounded-xl p-2 text-white">
+<span class="material-symbols-outlined text-2xl fill-1">explore</span>
+</div>
+<h1 class="text-xl font-bold hidden lg:block tracking-tight text-slate-900 dark:text-white">Taggo</h1>
+</div>
+<nav class="flex flex-col gap-2 w-full">
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary/10 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined fill-1">explore</span>
+<span class="font-semibold hidden lg:block">Explore</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="font-medium hidden lg:block">My Taggos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-medium hidden lg:block">Saved</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">collections_bookmark</span>
+<span class="font-medium hidden lg:block">Collections</span>
+</a>
+<div class="h-px bg-slate-100 dark:bg-slate-800 my-4 mx-2"></div>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-medium hidden lg:block">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium hidden lg:block">Settings</span>
+</a>
+</nav>
+<div class="mt-auto w-full px-2">
+<div class="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 hidden lg:block">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Pro Plan</p>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Unlimited folders and custom map pins.</p>
+<button class="w-full py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-xs font-bold rounded-lg">Upgrade</button>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Top Header -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md flex items-center justify-between px-6 z-40">
+<div class="flex-1 max-w-2xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-900 border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search spots, tags, or locations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-950"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-slate-800">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900 dark:text-white leading-none">Alex Rivera</p>
+<p class="text-[10px] text-slate-500 font-medium">Spot Explorer</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover" data-alt="User profile picture of a male explorer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzxh3-xf9IH4WTs7nRo6CfTjDpyDHqAf9NLwgCgebMgHlGkUs59Y91MUbngRgKJ7bfsvEFxGx77xe6UOwDyvF3xHh6k7dwB8huAhRVyGgngZMy70ToWD2MD1lfkdoS6mIOf6goxssQ85oCGMew5EhAEuz1iPFNYYIteFayQqYkV9snY6zonobnnTiVmzAgz1PmzKr5enSyfWlaoWURlGqQk_55Lu0IKgqmTDu_89hNgzJ3egQ5ab_3b11VMuK1w5iAJiWG_Rwj_Hg"/>
+</div>
+</div>
+</header>
+<!-- Dual Pane Content -->
+<div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+<!-- Left Pane: Map View -->
+<section class="flex-1 relative bg-slate-100 dark:bg-slate-900">
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-location="San Francisco, USA" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3mF6OQLiqj0YIrjCyd1oLkkNyHNTvahzWHqcbZwX7TrhRS6p2JfiEnPp2RbA1Rf827HHGVMriidjK5NNeswEgvWQbpI5XUg6wbbGTMo5PjCoFwLOxA_36kSQ5Ww3huc6DsUbBr_2M49OVyxRQLhmvaZFPZTsE-K6fsG6Bu1oW9Qn1UtGbF3SmJfyHtf2aGu-vguPtdCCwrZuLl9_7KRmOUYSX9vSHnC2VtfesfbLo-LT6Ks5CxRgAJOjzHOPFShpheH-xE35DPi0')">
+<!-- Abstract overlay to simulate map styling -->
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+</div>
+<!-- Map Controls -->
+<div class="absolute top-4 right-4 flex flex-col gap-2 z-10">
+<button class="bg-white dark:bg-slate-800 p-2 rounded-lg shadow-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-2 rounded-lg shadow-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-2 rounded-lg shadow-lg text-primary hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+<!-- Custom Markers (Simulated) -->
+<div class="absolute top-[30%] left-[45%] group cursor-pointer">
+<div class="bg-primary text-white p-2 rounded-full shadow-xl ring-4 ring-white/30 transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-sm fill-1">restaurant</span>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-white dark:bg-slate-800 px-3 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+<p class="text-xs font-bold">Blue Bottle Cafe</p>
+</div>
+</div>
+<div class="absolute top-[50%] left-[25%] group cursor-pointer">
+<div class="bg-emerald-500 text-white p-2 rounded-full shadow-xl ring-4 ring-white/30 transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-sm fill-1">park</span>
+</div>
+</div>
+<div class="absolute top-[65%] left-[60%] group cursor-pointer">
+<div class="bg-orange-500 text-white p-2 rounded-full shadow-xl ring-4 ring-white/30 transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-sm fill-1">camera</span>
+</div>
+</div>
+<!-- Category Quick Filters Overlay -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur rounded-2xl shadow-2xl border border-white/20 z-10 overflow-x-auto max-w-[90vw] whitespace-nowrap scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-base">apps</span> All
+                        </button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">local_cafe</span> Cafe
+                        </button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">forest</span> Park
+                        </button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">nightlight</span> Nightlife
+                        </button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">diamond</span> Hidden Gems
+                        </button>
+</div>
+</section>
+<!-- Right Pane: Feed View -->
+<section class="w-full md:w-[420px] lg:w-[480px] bg-background-light dark:bg-background-dark overflow-y-auto custom-scrollbar border-l border-slate-200 dark:border-slate-800">
+<div class="p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold">Trending Spots</h2>
+<button class="text-primary text-sm font-bold hover:underline">See all</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Spot Card 1 -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+<div class="relative h-40">
+<img class="w-full h-full object-cover" data-alt="A modern minimalist cafe interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcMLDhGmzWn7imfzkFI_ZExbITJCs8BcF8M_sO1ckTUEHaD1dbKCKUysu9Hg_7CFKR3Hrk1hCMxYGxYcwW-rRwqacQLh5LTgZi7VnAknm5im_V2YqDv0eyzxkytGTg52w-wA07m1EaPYonM7lRjV3GrIKI6pBmvk5oRqta2bRtlkgMcRLrw3Hs-kNSdWnWG8E5IzPDfRd7e1gqdZ0Ly55aJsCCSHExzyS6orTy0qf3kT2d57GMYvHpOb1lBCgFuLHKXJZRXXhPybM"/>
+<div class="absolute top-3 right-3">
+<button class="bg-white/90 backdrop-blur p-2 rounded-full shadow-sm text-slate-900 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">bookmark</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 flex gap-1">
+<span class="px-2 py-0.5 rounded-md bg-white/90 backdrop-blur text-[10px] font-bold text-slate-900 uppercase tracking-tight">Cafe</span>
+<span class="px-2 py-0.5 rounded-md bg-primary text-white text-[10px] font-bold uppercase tracking-tight">Popular</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-slate-900 dark:text-white">Blue Bottle Coffee</h3>
+<div class="flex items-center gap-1 text-xs font-bold text-amber-500">
+<span class="material-symbols-outlined text-xs fill-1">star</span> 4.8
+                                        </div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 leading-relaxed">Artisan coffee spot with minimal decor and exceptional pour-overs. Great for light work.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhw4Tx31p_bHW2b40OHqztxCvUaENkX2N3ScMK_ZEiRL_OQ-DOrRMzGge49B5HdjjvluUPWrP_NxXYexhYOpiILh7uOpQ7yVC_yV1EGZ6VNbsw_BlGPX8vLXnSn505ItD8nq9UR-znfgN2QXd9rzhXAKm9qqjDMDbL3JXQhT1gi60aWgEp5DdO_zVLD6jLb03VqngPWpN9Uq_OFmK26J6U_RKOVSqJ2-C91a85uGfKX1b5dtYK4_v0ETJK693fd_XldL4O1O-thQc"/>
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaajLRVshYH0UDMRzmR-LJsjQ30Wsa3vEaHMSAJrbrZwXC4qAZdyzb4w0Nwt5YPI-YUNm41C0_y_5Ou6WX0tKiGZd8B2Gke2QWHpN1a8B5tMAepScdrl_Bt4Vzxpi1VRgjEyYKSwHDzJ1u5QQAzKKr9GPUsNBg1uZ7OuDs54Lqoad-sbSIloskQ44t_ulCfVvlYmknlBv0H6mGSo78XxiZ6d13Ecb7MOCjTfd59abe2o-WOqOayQve-Xd0IVd55Ohqgkusy-3Qc-g"/>
+<div class="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[8px] font-bold">+12</div>
+</div>
+<button class="px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors rounded-lg text-xs font-bold text-slate-600 dark:text-slate-300">View Details</button>
+</div>
+</div>
+</div>
+<!-- Spot Card 2 -->
+<div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+<div class="relative h-40">
+<img class="w-full h-full object-cover" data-alt="A sunlit forest trail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaINUae_SGZsBBd2J2q85fwkmPkqvFK2jpTAIyiPUd9A2q2_YVV1UHvKvKOxoU39vcbq818I_N2JoRZwnoDdhr1zhRU9oYOYe3xHVAfYLAmCOOsVhmgBRDT9j12aeQ0GjM4alEnXIm_asSL771zR8SQY_KySr1vS7IUMdtOkY1uORzF68Pu814EewVXxZXeDXqAC4dJqbItqTzr3wyMiZR07yaI0puC8-rz-n2go3s9nvv0BAMNT-M9lfjV1bWY1bt-SRhApphkoA"/>
+<div class="absolute top-3 right-3">
+<button class="bg-white/90 backdrop-blur p-2 rounded-full shadow-sm text-slate-900">
+<span class="material-symbols-outlined text-lg">bookmark</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded-md bg-white/90 backdrop-blur text-[10px] font-bold text-slate-900 uppercase tracking-tight">Nature</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-slate-900 dark:text-white">Presidio Trails</h3>
+<div class="flex items-center gap-1 text-xs font-bold text-amber-500">
+<span class="material-symbols-outlined text-xs fill-1">star</span> 4.9
+                                        </div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 leading-relaxed">Winding paths through historic eucalyptus groves with iconic views of the bridge.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-900" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNo7rcdLR9nIOSXD9cM_ZLcpcKFIwp6kS9GITKG2GXs9tyAJwOlNbgN3Grut76BsgfAKw_C32IzZgo-HegJiBfMrdM35FhGBcKWfM58nTCNIZ2XAyrSSQ35YJhZ5FOQrRtzQ_4cFs0HkQNeTEpvOaOsqTj6kwNL0s2g7qgLA823iTU18FjiZz0hWzTzQzJuDPEnhJPE-AarSwAid8vDlanhnn-WX6PFlfuhmqp-QmO1aKu4faNOPVcCTuTTu-XFjkOu9ygPRYKaUY"/>
+<div class="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[8px] font-bold">+5</div>
+</div>
+<button class="px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors rounded-lg text-xs font-bold text-slate-600 dark:text-slate-300">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Taggos (Folders) Section -->
+<div class="mt-10 mb-6 flex items-center justify-between">
+<h2 class="text-lg font-bold">Recent Taggos</h2>
+<button class="text-primary text-sm font-bold hover:underline">My folders</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Taggo Folder 1 -->
+<div class="group cursor-pointer">
+<div class="relative mb-3 flex items-center justify-center">
+<!-- Visual Stack Effect -->
+<div class="absolute inset-0 bg-slate-300 dark:bg-slate-800 rounded-xl translate-x-1 -translate-y-1 opacity-40"></div>
+<div class="absolute inset-0 bg-slate-400 dark:bg-slate-700 rounded-xl translate-x-0.5 -translate-y-0.5 opacity-60"></div>
+<div class="relative w-full aspect-square rounded-xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Exterior of a cozy restaurant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSc1vN59PSSYLtPOPTAi8713q9v-F0ycMPK55B6YtYze7PUrmJ2yaunyqX5FDIzeUI6gup1kgZi-U3lHJMADHVSqto0YGMwuO64UstbLV4nyA-rXoYSaoY-MCawP-A_VkNTWv1kze-KEhjk8LciwufIYg8HdA8R9WPktGFxaP89xZ7odGGsTyfHVik-vtkxxNetlxDX2EoOOJpy42E2ynK2faJXdho8wJoRj6YQpyCO8cY7KfqfHrbyhgh6JJIhs232PWlEsXVJdA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+<span class="text-white text-[10px] font-bold">12 Spots</span>
+</div>
+</div>
+</div>
+<h4 class="font-bold text-sm text-slate-900 dark:text-white">SF Hidden Eateries</h4>
+<p class="text-xs text-slate-500">Updated 2h ago</p>
+</div>
+<!-- Taggo Folder 2 -->
+<div class="group cursor-pointer">
+<div class="relative mb-3 flex items-center justify-center">
+<div class="absolute inset-0 bg-slate-300 dark:bg-slate-800 rounded-xl translate-x-1 -translate-y-1 opacity-40"></div>
+<div class="absolute inset-0 bg-slate-400 dark:bg-slate-700 rounded-xl translate-x-0.5 -translate-y-0.5 opacity-60"></div>
+<div class="relative w-full aspect-square rounded-xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Scenic landscape photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBHv4y2IMa44PBycKMHkEzSSzrx0oWRL7oyqGjuK3xGDu0utylVKcVX7xa66j3oKzIZGAOcEwwq1kfL7VS3CBaORQzGL6Ak1XkkXXC2m80RnNeUYLYuLcQHOhYLNTAMug4NZJgmyQ2LM3cPGTbFZ4BXOEjyn60wV95Ec9h5mgTa33RL7VvNNkGYJHe42cpmYzbtBupdvvb1PU97YdGadIloHFKO2PA7z4dILCN8LHlD9T9bdEqMbc26knUDP3JZlp8A4tU23nNQjQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+<span class="text-white text-[10px] font-bold">8 Spots</span>
+</div>
+</div>
+</div>
+<h4 class="font-bold text-sm text-slate-900 dark:text-white">Coastal Vibes</h4>
+<p class="text-xs text-slate-500">Updated yesterday</p>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="mt-12 p-6 bg-gradient-to-br from-primary to-blue-600 rounded-3xl text-white shadow-xl shadow-primary/20">
+<h3 class="text-xl font-bold mb-2">Share your spots?</h3>
+<p class="text-sm text-white/80 mb-6 leading-relaxed">Create your own Taggos and help the community discover new gems.</p>
+<button class="w-full py-3 bg-white text-primary font-bold rounded-xl shadow-lg hover:bg-slate-50 transition-colors">
+                                Create a Taggo
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Mobile View Filter Toggle (FAB) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined">map</span>
+</button>
+</body></html>
