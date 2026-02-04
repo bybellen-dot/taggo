@@ -1,0 +1,7 @@
+{
+  "name": "Taggo - Social Spots & Collections",
+  "description": "A social platform to discover, organize, and share your favorite places in private or public collections called Taggos.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
